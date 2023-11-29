@@ -1,8 +1,9 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <main>
-    <a-date-picker />
-  </main>
+  <div>header</div>
 </template>
+
+<style scoped></style>
