@@ -1,19 +1,34 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { onBeforeMount, reactive } from "vue";
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import useBaseStore from "@/stores/base";
+import useUserStore from "@/stores/user";
+import { useRouter } from "vue-router";
+import { message } from "ant-design-vue";
 
-interface FormState {
-  username: string;
-  password: string;
-  remember: boolean;
-}
+const baseStore = useBaseStore();
+const userStore = useUserStore();
 
-const formState = reactive<FormState>({
+onBeforeMount(() => {
+  if (userStore.Authorization) {
+    const router = useRouter();
+    router.push({ name: "home" });
+    return;
+  }
+  baseStore.loadWebSite();
+});
+
+const formState = reactive<LoginFormState>({
   username: "",
   password: "",
   remember: true,
 });
+
 const onFinish = (values: any) => {
+  userStore.login(values).catch((msg) => {
+    console.log(msg)
+    message.error(msg);
+  });
   console.log("Success:", values);
 };
 
@@ -25,7 +40,7 @@ const onFinishFailed = (errorInfo: any) => {
 <template>
   <div class="main">
     <div class="header">
-      <div class="title">antdv-tb</div>
+      <div class="title">{{ baseStore.name }}</div>
       <div class="desc"></div>
     </div>
     <div class="form">
