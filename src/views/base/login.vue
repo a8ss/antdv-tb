@@ -59,7 +59,7 @@ const onFinishFailed = (errorInfo: any) => {
             placeholder="账户：手机号码、邮箱"
           >
             <template #prefix>
-              <user-outlined />
+              <user-outlined style="color: #1677ff;" />
             </template>
           </a-input>
         </a-form-item>
@@ -71,7 +71,7 @@ const onFinishFailed = (errorInfo: any) => {
             placeholder="密码：请输入密码"
           >
             <template #prefix>
-              <LockOutlined />
+              <LockOutlined style="color: #1677ff;" />
             </template>
           </a-input-password>
         </a-form-item>
@@ -95,6 +95,7 @@ const onFinishFailed = (errorInfo: any) => {
   min-width: 368px;
   width: 20%;
   margin: 0 auto;
+  padding-top: 10vh;
 }
 
 .header {
